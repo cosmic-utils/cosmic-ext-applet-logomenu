@@ -20,7 +20,9 @@
   </url>
   <content_rating type="oars-1.1" />
   <name>Logo Menu</name>
+  <name xml:lang="uk">Логотипменю</name>  
   <summary>Customisable menu applet for the COSMIC™ desktop.</summary>
+  <summary xml:lang="uk">Налаштовуваний віджет меню для середовища COSMIC™.</summary>
   <description>
     <p>**Important notice: If you've previously installed this applet please refer to the 'Homepage' link below for instructions on migrating.**</p>
     <p>
@@ -30,6 +32,14 @@
         <li>Bring all your common applications and actions into one, neat place!</li>
       </ul>
     </p>
+  </description>
+  <description xml:lang="uk">
+  <p>**Увага! Якщо ви раніше встановлювали цей віджет, завітайте за посиланням «Домашня сторінка» нижче, щоб дізнатися, як легко оновити його до останньої версії.**</p>
+  <ul>
+    <li>Оберіть логотип свого дистрибутива або додайте свій унікальний!</li>
+    <li>Налаштуйте меню під себе з власними командами.</li>
+    <li>Збирайте всі улюблені застосунки та дії в одному місці!</li>
+  </ul>
   </description>
   <launchable type="desktop-id">
     dev.cappsy.CosmicExtAppletLogoMenu.desktop
