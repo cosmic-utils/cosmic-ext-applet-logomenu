@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Logo Menu
 Name[es]=Menú logo
+Name[uk]=Логотипменю
 Exec=cosmic-ext-applet-logomenu
 Terminal=false
 Type=Application
@@ -10,6 +11,7 @@ Icon=dev.cappsy.CosmicExtAppletLogoMenu
 Categories=COSMIC;Utility;
 Keywords=Folder;Manager;
 Keywords[es]=Carpeta;Gestor;
+Keywords[uk]=Менеджер;Тека;Папка;Пуск;
 MimeType=inode/directory;
 NoDisplay=true
 StartupWMClass=cosmic-ext-applet-logomenu
