@@ -2,7 +2,7 @@
 ## Please copy the whole directory when creating new languages to maintain this link
 
 # Settings UI
-about = Про програму
+about = Про застосунок
 add-divider = Додати роздільник
 add-menu-item = Додати пункт меню
 app-title = COSMIC™ Логотипменю
