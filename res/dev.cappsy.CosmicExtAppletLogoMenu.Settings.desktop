@@ -1,8 +1,10 @@
 [Desktop Entry]
 Name=Logo Menu Settings
+Name[cs]=Nastavení Menu s logem
 Name[es]=Ajustes de Menú Logo
 Name[uk]=Налаштування Логотипменю
 Comment=Settings application for COSMIC™ Logo Menu applet
+Comment[cs]=Aplikace nastavení pro applet COSMIC™ Menu s logem
 Comment[es]=Aplicación de ajuster para el applet de COSMIC™ Menú Logo
 Comment[uk]=Налаштування віджету застосунку для COSMIC™ Логотипменю
 Type=Application
