@@ -11,7 +11,7 @@ use cosmic::iced::{Limits, Subscription};
 use cosmic::iced_winit::commands::popup::{destroy_popup, get_popup};
 use cosmic::widget;
 use cosmic::{Application, Element};
-use liblog::{LogoMenuConfig, MenuItemType, IMAGES};
+use liblog::{IMAGES, LogoMenuConfig, MenuItemType};
 use std::fs;
 use std::path::Path;
 use std::process::Command;
@@ -162,10 +162,11 @@ impl Application for LogoMenu {
     }
 
     fn subscription(&self) -> Subscription<Message> {
-        Subscription::batch(vec![self
-            .core
-            .watch_config(ID)
-            .map(|res| Message::ConfigUpdate(res.config))])
+        Subscription::batch(vec![
+            self.core
+                .watch_config(ID)
+                .map(|res| Message::ConfigUpdate(res.config)),
+        ])
     }
 
     fn update(&mut self, message: Self::Message) -> Task<Self::Message> {
@@ -260,7 +261,7 @@ impl Application for LogoMenu {
         Task::none()
     }
 
-    fn style(&self) -> Option<cosmic::iced_runtime::Appearance> {
+    fn style(&self) -> std::option::Option<cosmic::iced::theme::Style> {
         Some(cosmic::applet::style())
     }
 }

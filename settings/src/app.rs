@@ -213,7 +213,7 @@ impl cosmic::Application for AppModel {
                     .align_x(Alignment::Center),
             ),
         );
-        page_content = page_content.push(Space::with_height(padding));
+        page_content = page_content.push(Space::new().height(padding));
 
         // Set currently selected logo
         let logo_widget = if self.custom_logo_active && Path::new(&self.custom_logo_path).exists() {
@@ -236,7 +236,7 @@ impl cosmic::Application for AppModel {
                     .align_x(Alignment::Center),
             ),
         );
-        page_content = page_content.push(Space::with_height(padding));
+        page_content = page_content.push(Space::new().height(padding));
 
         // Menu settings
         let mut menu_settings = settings::section().add({
@@ -268,7 +268,7 @@ impl cosmic::Application for AppModel {
         }
 
         page_content = page_content.push(menu_settings);
-        page_content = page_content.push(Space::with_height(padding));
+        page_content = page_content.push(Space::new().height(padding));
 
         // Add buttons
         page_content = page_content.push(
@@ -295,7 +295,7 @@ impl cosmic::Application for AppModel {
             .width(Length::Fill)
             .align_x(Alignment::Center),
         );
-        page_content = page_content.push(Space::with_height(15));
+        page_content = page_content.push(Space::new().height(15));
 
         // Menu builder
         let mut menu_item_controls = settings::section();
@@ -353,7 +353,7 @@ impl cosmic::Application for AppModel {
                                     divider_color.green,
                                     divider_color.blue,
                                 ),
-                                width: 1,
+                                snap: false,
                                 radius: Radius::new(0),
                                 fill_mode: rule::FillMode::Full,
                             }
@@ -380,7 +380,7 @@ impl cosmic::Application for AppModel {
             menu_item_controls = menu_item_controls.add(cosmic::Element::from(menu_item_row));
         }
         page_content = page_content.push(menu_item_controls);
-        page_content = page_content.push(Space::with_height(15));
+        page_content = page_content.push(Space::new().height(15));
 
         // TODO: This works for now but it needs to be moved away
         // from the view function so it only triggers when needed.
