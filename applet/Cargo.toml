@@ -5,13 +5,13 @@ edition = "2024"
 license = "GPL-3.0"
 
 [build-dependencies]
-xdgen = "0.1"
+xdgen = "0.1.0"
 
 [dependencies]
 serde = "1.0.229"
-zbus = { version = "5.18.0", default-features = false }
+zbus = { version = "5.19.0", default-features = false }
 logind-zbus = "5.3.2"
-rustix = { version = "1.1.4", features = ["process"] }
+rustix = { version = "1.1.6", features = ["process"] }
 liblog = { path = "../liblog" }
 
 [dependencies.libcosmic]
