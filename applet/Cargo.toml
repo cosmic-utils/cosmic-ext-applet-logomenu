@@ -4,6 +4,9 @@ version = "0.8.0"
 edition = "2024"
 license = "GPL-3.0"
 
+[build-dependencies]
+xdgen = "0.1"
+
 [dependencies]
 serde = "1.0.229"
 zbus = { version = "5.18.0", default-features = false }
@@ -14,7 +17,7 @@ liblog = { path = "../liblog" }
 [dependencies.libcosmic]
 git = "https://github.com/pop-os/libcosmic.git"
 default-features = false
-features = ["applet", "wayland"]
+features = ["applet", "applet-token", "dbus-config", "wayland"]
 
 [features]
 flatpak = []
