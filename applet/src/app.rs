@@ -126,27 +126,54 @@ impl Application for LogoMenu {
         for item in &config_menuitems.items {
             match item.item_type() {
                 MenuItemType::LaunchAction => {
-                    content_list = content_list.push(
-                        menu_button(widget::text::body(item.label().unwrap_or_default()))
-                            .on_press(Message::Run(item.command().unwrap_or_default())),
-                    )
+                    let command = item.command().unwrap_or_default();
+                    let label = item.label().unwrap_or_default();
+
+                    // Fetch the appropriate icon (system, flatpak, or fallback)
+                    let icon_name = get_icon_for_action(&command);
+
+                    // Build the button content with icon and text side-by-side
+                    let action_content = widget::row([])
+                        .push(cosmic::widget::icon::from_name(icon_name).size(16))
+                        .push(widget::text::body(label))
+                        .spacing(8)
+                        .align_y(cosmic::iced::Alignment::Center);
+
+                    content_list = content_list
+                        .push(menu_button(action_content).on_press(Message::Run(command)))
                 }
                 MenuItemType::PowerAction => {
-                    content_list = content_list.push(
-                        menu_button(widget::text::body(item.label().unwrap_or_default())).on_press(
-                            Message::Action(match item.command() {
-                                Some(command) => match command.as_ref() {
-                                    "Lock" => PowerAction::Lock,
-                                    "Logout" => PowerAction::LogOut,
-                                    "Suspend" => PowerAction::Suspend,
-                                    "Restart" => PowerAction::Restart,
-                                    "Shutdown" => PowerAction::Shutdown,
-                                    _ => PowerAction::LogOut,
-                                },
-                                _ => PowerAction::Shutdown,
-                            }),
-                        ),
-                    )
+                    let command = item.command().unwrap_or_default();
+                    let label = item.label().unwrap_or_default();
+                    
+                    // Map power actions to standard FreeDesktop symbolic icons
+                    let icon_name = match command.as_str() {
+                        "Lock" => "system-lock-screen-symbolic",
+                        "Logout" => "system-log-out-symbolic",
+                        "Suspend" => "system-suspend-symbolic",
+                        "Restart" => "system-reboot-symbolic",
+                        "Shutdown" => "system-shutdown-symbolic",
+                        _ => "system-shutdown-symbolic",
+                    };
+
+                    // Build the button content with icon and text side-by-side
+                    let action_content = widget::row([])
+                        .push(cosmic::widget::icon::from_name(icon_name).size(16))
+                        .push(widget::text::body(label))
+                        .spacing(8)
+                        .align_y(cosmic::iced::Alignment::Center);
+
+                    content_list = content_list.push(menu_button(action_content).on_press(
+                        Message::Action(match command.as_str() {
+                            "Lock" => PowerAction::Lock,
+                            "Logout" => PowerAction::LogOut,
+                            "Suspend" => PowerAction::Suspend,
+                            "Restart" => PowerAction::Restart,
+                            "Shutdown" => PowerAction::Shutdown,
+                            "" => PowerAction::Shutdown,
+                            _ => PowerAction::LogOut,
+                        }),
+                    ))
                 }
                 MenuItemType::Divider => {
                     content_list = content_list.push(
@@ -291,4 +318,38 @@ fn is_flatpak() -> bool {
 
 fn is_nixos() -> bool {
     fs::exists("/run/host/etc/NIXOS").unwrap_or(false)
+}
+
+fn get_icon_for_action(command: &str) -> &str {
+    let cmd = command.to_lowercase();
+
+    // 1. COSMIC Ecosystem & FreeDesktop Standards
+    if cmd.contains("logomenu-settings") {
+        return "preferences-other-symbolic";
+    } else if cmd.contains("cosmic-launcher") {
+        return "system-search-symbolic";
+    } else if cmd.contains("cosmic-app-library") || cmd.contains("app-library") {
+        return "view-app-grid-symbolic";
+    } else if cmd.contains("cosmic-workspaces") {
+        return "preferences-desktop-workspaces-symbolic";
+    } else if cmd.contains("cosmic-settings") || cmd.contains("control-center") {
+        return "preferences-system-symbolic";
+    } else if cmd.contains("cosmic-files") || cmd.contains("nautilus") {
+        return "system-file-manager-symbolic";
+    } else if cmd.contains("cosmic-term") || cmd.contains("terminal") || cmd.contains("kitty") {
+        return "utilities-terminal-symbolic";
+    } else if cmd.contains("cosmic-store") || cmd.contains("software") {
+        return "system-software-install-symbolic";
+    }
+
+    // 2. Flatpak Extraction (High success rate for fetching official colorful app icons)
+    if command.starts_with("flatpak run ") {
+        if let Some(app_id) = command.split_whitespace().nth(2) {
+            return app_id;
+        }
+    }
+
+    // 3. Absolute Fallback
+    // Custom scripts or unknown commands will receive a generic execution icon.
+    "system-run-symbolic"
 }
