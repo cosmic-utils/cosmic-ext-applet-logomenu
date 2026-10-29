@@ -10,8 +10,8 @@ repository = "https://github.com/cappsyco/cosmic-ext-applet-logomenu"
 serde = "1.0.229"
 liblog = { path = "../liblog" }
 rfd = "0.17.2"
-sysinfo = "0.39.6"
-open = "5.4.0"
+sysinfo = "0.40.0"
+open = "5.4.5"
 
 [dependencies.i18n-embed]
 version = "0.16.0"

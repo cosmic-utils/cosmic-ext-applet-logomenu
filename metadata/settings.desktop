@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Logo Menu Settings
+Comment=Settings application for COSMIC™ Logo Menu applet
+Type=Application
+Icon=dev.cappsy.CosmicExtAppletLogoMenu
+Exec=cosmic-ext-logomenu-settings
+Terminal=false
+StartupNotify=true
+StartupWMClass=cosmic-ext-logomenu-settings
+Categories=COSMIC;Settings
+Keywords=COSMIC
