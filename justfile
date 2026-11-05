@@ -27,15 +27,15 @@ flatpak-bin-dst2 := flatpak-base-dir / 'bin' / name2
 
 desktop1 := APPID1 + '.desktop'
 desktop2 := APPID2 + '.desktop'
-desktop-src1 := 'res' / desktop1
-desktop-src2 := 'res' / desktop2
+desktop-src1 := 'target' / 'xdgen' / desktop1
+desktop-src2 := 'target' / 'xdgen' / desktop2
 desktop-dst1 := clean(rootdir / prefix) / 'share' / 'applications' / desktop1
 desktop-dst2 := clean(rootdir / prefix) / 'share' / 'applications' / desktop2
 flatpak-desktop-dst1 := flatpak-base-dir / 'share' / 'applications' / desktop1
 flatpak-desktop-dst2 := flatpak-base-dir / 'share' / 'applications' / desktop2
 
 metainfo := APPID1 + '.metainfo.xml'
-metainfo-src := 'res' / metainfo
+metainfo-src := 'target' / 'xdgen' / metainfo
 metainfo-dst := clean(rootdir / prefix) / 'share' / 'metainfo' / metainfo
 flatpak-metainfo-dst := flatpak-base-dir / 'share' / 'metainfo' / metainfo
 

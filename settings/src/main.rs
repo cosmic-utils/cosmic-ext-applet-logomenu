@@ -28,7 +28,9 @@ fn is_running() -> bool {
         .ok()
         .and_then(|p| p.canonicalize().ok());
 
-    let mut system = System::new_all();
+    let Ok(mut system) = System::new_all() else {
+        return false;
+    };
     system.refresh_all();
     system.processes().values().any(|process| {
         if process.pid().as_u32() == current_pid {
